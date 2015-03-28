@@ -1,13 +1,11 @@
 {
   "name": "laravelista/bard",
-  "description": "Laravel friendly Bard that writes sitemap poetry.",
+  "description": "Laravel friendly Bard that writes sitemap poetry in xml.",
   "keywords": [
     "sitemap",
     "google",
     "xml",
-    "laravel",
-    "bard",
-    "laravelista"
+    "laravel"
   ],
   "license": "MIT",
   "authors": [
