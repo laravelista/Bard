@@ -1,0 +1,6 @@
+suites:
+    bard_suite:
+        namespace: Bard\Sitemap
+        psr4_prefix: Bard\Sitemap
+        src_path: src
+        spec_prefix: spec
