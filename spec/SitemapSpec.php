@@ -22,6 +22,7 @@ class SitemapSpec extends ObjectBehavior {
 
         var_dump($this->render()->getWrappedObject());
 
-        $this->render()->shouldReturn('<urlset><url><loc>/</loc><priority>1.0</priority><changeFrequency>monthly</changeFrequency><xhtml:link rel="alternate" hreflang="en" href="/en"/></url></urlset>');
+        $this->render()->shouldReturn('<?xml version="1.0" encoding="UTF-8"?>
+<urlset><url><loc>/</loc><priority>1.0</priority><changeFrequency>monthly</changeFrequency><xhtml:link rel="alternate" hreflang="en" href="/en"/></url></urlset>');
     }
 }

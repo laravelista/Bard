@@ -23,6 +23,8 @@ class Sitemap {
     {
         $this->writer->openMemory();
 
+        $this->writer->startDocument("1.0", 'UTF-8');
+
         $this->writer->namespaceMap = [
             'http://www.sitemaps.org/schemas/sitemap/0.9' => ''
         ];
