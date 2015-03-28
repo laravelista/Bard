@@ -14,4 +14,4 @@ If you are using Laravel you'll have access to some *extra awesomeness* with con
  
 ## Usage
  
-**More info coming soon**
+**More info coming very soon**
