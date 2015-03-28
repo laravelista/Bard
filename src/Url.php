@@ -1,5 +1,6 @@
 <?php namespace Laravelista\Bard;
 
+use Laravelista\Bard\Exceptions\ValidationException;
 use Sabre\Xml\Writer;
 use Sabre\Xml\XmlSerializable;
 
@@ -10,6 +11,11 @@ class Url implements XmlSerializable {
     protected $priority;
 
     protected $changeFrequency;
+
+    protected $validChangeFrequencyValues = [
+        "always", "hourly", "daily", "weekly",
+        "monthly", "yearly", "never"
+    ];
 
     protected $lastModification;
 
@@ -24,11 +30,11 @@ class Url implements XmlSerializable {
      */
     function __construct($location, $priority = null, $changeFrequency = null, $lastModification = null, array $translations = [])
     {
-        $this->location = $location;
-        $this->priority = $priority;
-        $this->changeFrequency = $changeFrequency;
-        $this->lastModification = $lastModification;
-        $this->translations = $translations;
+        $this->setLocation($location);
+        if ( ! is_null($priority)) $this->setPriority($priority);
+        if ( ! is_null($changeFrequency)) $this->setChangeFrequency($changeFrequency);
+        if ( ! is_null($lastModification)) $this->setLastModification($lastModification);
+        if ( ! is_null($translations)) $this->setTranslations($translations);
     }
 
     /**
@@ -85,4 +91,107 @@ class Url implements XmlSerializable {
                 $writer->write([$property => $this->$property]);
         }
     }
+
+    /**
+     * @param mixed $location
+     * @return bool
+     */
+    public function setLocation($location)
+    {
+        $this->location = parse_url($location, PHP_URL_PATH);
+
+        return true;
+    }
+
+    /**
+     * @param array $translations
+     * @return bool
+     * @throws ValidationException
+     */
+    public function setTranslations(array $translations)
+    {
+        foreach ($translations as $translation)
+        {
+            if ( ! is_array($translation))
+            {
+                throw new ValidationException('Translation must be an array.');
+            }
+
+            if ( ! array_key_exists('hreflang', $translation) || ! array_key_exists('href', $translation))
+            {
+                throw new ValidationException('Translation must be an array with hreflang and href keys.');
+            }
+        }
+
+        $this->translations = $translations;
+
+        return true;
+    }
+
+    public function addTranslation(array $translation)
+    {
+        if ( ! array_key_exists('hreflang', $translation) || ! array_key_exists('href', $translation))
+        {
+            throw new ValidationException('Translation must be an array with hreflang and href keys.');
+        }
+
+        $this->translations[] = $translation;
+
+        return true;
+    }
+
+    /**
+     * @param null $lastModification
+     * @return bool
+     */
+    public function setLastModification($lastModification)
+    {
+        // TODO: Validate and convert date
+        $this->lastModification = $lastModification;
+
+        return true;
+    }
+
+    /**
+     * @return array
+     */
+    public function getValidChangeFrequencyValues()
+    {
+        return $this->validChangeFrequencyValues;
+    }
+
+    /**
+     * @param null $changeFrequency
+     * @return bool
+     * @throws ValidationException
+     */
+    public function setChangeFrequency($changeFrequency)
+    {
+        if ( ! in_array($changeFrequency, $this->getValidChangeFrequencyValues()))
+        {
+            throw new ValidationException('Change frequency supports only: always, hourly, daily, weekly, monthly, yearly and never values.');
+        }
+
+        $this->changeFrequency = $changeFrequency;
+
+        return true;
+    }
+
+    /**
+     * @param null $priority
+     * @return bool
+     * @throws ValidationException
+     */
+    public function setPriority($priority)
+    {
+        if ( ! (is_float($priority) && $priority >= 0 && $priority <= 1))
+        {
+            throw new ValidationException('Priority must be >=0.0 and <=1.0');
+        }
+
+        $this->priority = number_format($priority, 1);
+
+        return true;
+    }
+
 }

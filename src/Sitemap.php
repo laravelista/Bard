@@ -53,18 +53,19 @@ class Sitemap {
         return new Response($this->generate(), Response::HTTP_OK, ['Content-Type' => 'text/xml']);
     }
 
+
     /**
      * @param $location
-     * @param $priority
-     * @param $changeFrequency
+     * @param null $priority
+     * @param null $changeFrequency
      * @param null $lastModification
      * @param array $translations
-     * @return $this
+     * @return Url
      */
     public function add($location, $priority = null, $changeFrequency = null, $lastModification = null, array $translations = [])
     {
-        $this->urls[] = new Url($location, $priority, $changeFrequency, $lastModification, $translations);
+        $this->urls[] = $url = new Url($location, $priority, $changeFrequency, $lastModification, $translations);
 
-        return $this;
+        return $url;
     }
 }
