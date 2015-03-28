@@ -1,4 +1,4 @@
-<?php namespace spec\Bard\Sitemap;
+<?php namespace spec\Laravelista\Bard;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

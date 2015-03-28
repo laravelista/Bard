@@ -1,4 +1,4 @@
-<?php namespace Bard\Sitemap;
+<?php namespace Laravelista\Bard;
 
 use Sabre\Xml\Writer;
 

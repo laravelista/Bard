@@ -1,4 +1,4 @@
-<?php namespace Bard\Sitemap;
+<?php namespace Laravelista\Bard;
 
 use Sabre\Xml\Writer;
 use Sabre\Xml\XmlSerializable;
@@ -40,7 +40,7 @@ class Url implements XmlSerializable {
     {
         // This is required
         $writer->write([
-            'loc'        => $this->location,
+            'loc' => $this->location,
         ]);
 
         // This is optional
@@ -79,9 +79,9 @@ class Url implements XmlSerializable {
      */
     private function add(Writer $writer, array $properties)
     {
-        foreach($properties as $property)
+        foreach ($properties as $property)
         {
-            if( ! is_null($this->$property))
+            if ( ! is_null($this->$property))
                 $writer->write([$property => $this->$property]);
         }
     }

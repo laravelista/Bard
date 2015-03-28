@@ -1,11 +1,13 @@
 {
-  "name": "mabasic/wakatime-php-api",
-  "description": "A bard that creates simple sitemaps in PHP. Compatible with Laravel.",
+  "name": "laravelista/bard",
+  "description": "Laravel friendly Bard that writes sitemap poetry.",
   "keywords": [
     "sitemap",
     "google",
     "xml",
-    "laravel"
+    "laravel",
+    "bard",
+    "laravelista"
   ],
   "license": "MIT",
   "authors": [
@@ -23,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Bard\\Sitemap\\": "src"
+      "Laravelista\\Bard\\": "src"
     }
   },
   "minimum-stability": "stable"
