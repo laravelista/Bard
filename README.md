@@ -2,14 +2,14 @@
 
 Tired of unstable, feature packed PHP sitemap packages?
  
- **Look no more!** 
+**Look no more!** 
+
+Bard is the simplest PHP Sitemap package, just add some urls and you are ready to go. Did I mention that *it supports multilingual locations aka hreflangs*. 
  
- Bard is the simplest PHP Sitemap package, just add some urls and you are ready to go. Did I mention that it supports multilingual locations aka hreflangs. 
+**But wait, there is more.** 
  
- **But wait, there is more.** 
+If you are using Laravel you'll have access to some *extra awesomeness* with convenient helper functions that make creating sitemaps a breeze.
  
- If you are using Laravel you'll have access to some extra awesomeness with convenient helper functions that make creating sitemaps a breeze.
+## Usage
  
- ## Usage
- 
- **More info coming soon**
+**More info coming soon**
