@@ -1,6 +1,7 @@
 <?php namespace Laravelista\Bard;
 
 use Sabre\Xml\Writer;
+use Symfony\Component\HttpFoundation\Response;
 
 class Sitemap {
 
@@ -19,7 +20,7 @@ class Sitemap {
     /**
      * @return string
      */
-    public function render()
+    public function generate()
     {
         $this->writer->openMemory();
 
@@ -41,6 +42,15 @@ class Sitemap {
         $this->writer->endElement();
 
         return $this->writer->outputMemory();
+    }
+
+
+    /**
+     * @return Response
+     */
+    public function render()
+    {
+        return new Response($this->generate(), Response::HTTP_OK, ['Content-Type' => 'text/xml']);
     }
 
     /**
