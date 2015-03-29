@@ -27,7 +27,8 @@ class Sitemap {
         $this->writer->startDocument("1.0", 'UTF-8');
 
         $this->writer->namespaceMap = [
-            'http://www.sitemaps.org/schemas/sitemap/0.9' => ''
+            'http://www.sitemaps.org/schemas/sitemap/0.9' => '',
+            'http://www.w3.org/1999/xhtml'                => 'xhtml'
         ];
 
         $this->writer->startElement('urlset');
