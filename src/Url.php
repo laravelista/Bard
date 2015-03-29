@@ -1,5 +1,6 @@
 <?php namespace Laravelista\Bard;
 
+use Exception;
 use Laravelista\Bard\Exceptions\ValidationException;
 use Sabre\Xml\Writer;
 use Sabre\Xml\XmlSerializable;
@@ -98,7 +99,7 @@ class Url implements XmlSerializable {
      */
     public function setLocation($location)
     {
-        $this->location = parse_url($location, PHP_URL_PATH);
+        $this->location = $location;
 
         return true;
     }
@@ -127,8 +128,8 @@ class Url implements XmlSerializable {
 
     /**
      * Adds a translation to property translations.
-     *
      * @return bool
+     * @throws Exception
      * @throws ValidationException
      */
     public function addTranslation()
@@ -148,7 +149,7 @@ class Url implements XmlSerializable {
 
         if (count($params) != 2)
         {
-            return false;
+            throw new Exception('You must pass array as first parameter or (hreflang and href)');
         }
 
         $hreflang = $params[0];
