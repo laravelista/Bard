@@ -117,10 +117,7 @@ class Url implements XmlSerializable {
                 throw new ValidationException('Translation must be an array.');
             }
 
-            if ( ! array_key_exists('hreflang', $translation) || ! array_key_exists('href', $translation))
-            {
-                throw new ValidationException('Translation must be an array with hreflang and href keys.');
-            }
+            $this->validateTranslation($translation);
         }
 
         $this->translations = $translations;
@@ -128,16 +125,53 @@ class Url implements XmlSerializable {
         return true;
     }
 
-    public function addTranslation(array $translation)
+    /**
+     * Adds a translation to property translations.
+     *
+     * @return bool
+     * @throws ValidationException
+     */
+    public function addTranslation()
+    {
+        $params = func_get_args();
+
+        if (is_array($params[0]))
+        {
+            $translation = $params[0];
+
+            $this->validateTranslation($translation);
+
+            $this->translations[] = $translation;
+
+            return true;
+        }
+
+        if (count($params) != 2)
+        {
+            return false;
+        }
+
+        $hreflang = $params[0];
+        $href = $params[1];
+
+        $this->translations[] = [
+            'hreflang' => $hreflang,
+            'href'     => $href
+        ];
+
+        return true;
+    }
+
+    /**
+     * @param $translation
+     * @throws ValidationException
+     */
+    private function validateTranslation(array $translation)
     {
         if ( ! array_key_exists('hreflang', $translation) || ! array_key_exists('href', $translation))
         {
             throw new ValidationException('Translation must be an array with hreflang and href keys.');
         }
-
-        $this->translations[] = $translation;
-
-        return true;
     }
 
     /**

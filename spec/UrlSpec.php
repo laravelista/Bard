@@ -61,11 +61,11 @@ class UrlSpec extends ObjectBehavior {
         $translations = [
             [
                 'hreflang' => 'en',
-                'href' => "/test/en"
+                'href'     => "/test/en"
             ],
             [
                 'hreflang' => 'de',
-                'href' => "/test/de"
+                'href'     => "/test/de"
             ]
         ];
 
@@ -76,5 +76,24 @@ class UrlSpec extends ObjectBehavior {
     {
         $this->shouldThrow('Laravelista\Bard\Exceptions\ValidationException')->duringSetTranslations(["bla"]);
         $this->shouldThrow('Laravelista\Bard\Exceptions\ValidationException')->duringSetTranslations([['bla', 'bla']]);
+    }
+
+    function it_adds_a_translation()
+    {
+        $this->addTranslation('de', "/test/de")->shouldReturn(true);
+
+        $translation = [
+            'hreflang' => 'de',
+            'href'     => "/test/de"
+        ];
+
+        $this->addTranslation($translation)->shouldReturn(true);
+    }
+
+    function it_cannot_add_a_translation()
+    {
+        $this->addTranslation('de', "/test/de", "be")->shouldReturn(false);
+
+        $this->shouldThrow('Laravelista\Bard\Exceptions\ValidationException')->duringAddTranslation(["bla"]);
     }
 }
