@@ -62,7 +62,7 @@ class Sitemap {
      * @param array $translations
      * @return Url
      */
-    public function add($location, $priority = null, $changeFrequency = null, $lastModification = null, array $translations = [])
+    public function addUrl($location, $priority = null, $changeFrequency = null, $lastModification = null, array $translations = [])
     {
         $this->urls[] = $url = new Url($location, $priority, $changeFrequency, $lastModification, $translations);
 

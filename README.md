@@ -12,6 +12,42 @@ Bard is the simplest PHP Sitemap package, just add some urls and you are ready t
  
 If you are using Laravel you'll have access to some *extra awesomeness* with convenient helper functions that make creating sitemaps a breeze.
  
-## Usage
+## Installation
  
-**More info coming very soon**
+```
+composer require laravelista/bard
+```
+
+## Usage
+
+### General usage
+
+```
+use Laravelista\Bard\Sitemap;
+use Sabre\Xml\Writer;
+
+$sitemap = new Sitemap(new Writer);
+```
+
+### Dependency injection in Laravel
+
+```
+use Laravelista\Bard\Sitemap;
+
+class SitemapController {
+
+    protected $sitemap;
+
+    public function __construct(Sitemap $sitemap) 
+    {
+        $this->sitemap = $sitemap;
+    }
+
+}
+```
+
+### Resolve out of Service Container IoC in Laravel
+
+```
+$sitemap = App::make('Laravelista\Bard\Sitemap')
+```

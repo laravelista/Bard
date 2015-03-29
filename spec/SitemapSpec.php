@@ -18,12 +18,12 @@ class SitemapSpec extends ObjectBehavior {
 
     function it_adds_url_to_sitemap()
     {
-        $this->add('http://acme.me')->shouldHaveType('Laravelista\Bard\Url');
+        $this->addUrl('http://acme.me')->shouldHaveType('Laravelista\Bard\Url');
     }
 
     function it_generates_sitemap_xml_string()
     {
-        $this->add('http://acme.me', 1.0, 'monthly', null, [['hreflang' => 'en', 'href' => "/en"]]);
+        $this->addUrl('http://acme.me', 1.0, 'monthly', null, [['hreflang' => 'en', 'href' => "/en"]]);
 
         // TODO: This sometimes works and sometimes does not.
         /*$this->generate()->shouldBeLike('<?xml version="1.0" encoding="UTF-8"?>
@@ -32,7 +32,7 @@ class SitemapSpec extends ObjectBehavior {
 
     function it_renders_sitemap_in_xml_response()
     {
-        $this->add('http://acme.me', 1.0, 'monthly', null, [['hreflang' => 'en', 'href' => "/en"]]);
+        $this->addUrl('http://acme.me', 1.0, 'monthly', null, [['hreflang' => 'en', 'href' => "/en"]]);
 
         //var_dump($this->render()->getWrappedObject()->getContent());
         //var_dump($this->render()->getWrappedObject());
