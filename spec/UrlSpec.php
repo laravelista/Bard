@@ -1,5 +1,6 @@
 <?php namespace spec\Laravelista\Bard;
 
+use DateTime;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -7,7 +8,7 @@ class UrlSpec extends ObjectBehavior {
 
     function let()
     {
-        $this->beConstructedWith('/test');
+        $this->beConstructedWith('http://acme.me');
     }
 
     function it_is_initializable()
@@ -53,7 +54,7 @@ class UrlSpec extends ObjectBehavior {
     function it_sets_last_modification()
     {
         // TODO: Fix this to only allow correct date format
-        $this->setLastModification('bla')->shouldReturn(true);
+        $this->setLastModification(new DateTime("2014-12-22"))->shouldReturn(true);
     }
 
     function it_sets_translations()

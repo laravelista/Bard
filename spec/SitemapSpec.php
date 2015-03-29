@@ -6,6 +6,26 @@ use Sabre\Xml\Writer;
 
 class SitemapSpec extends ObjectBehavior {
 
+    /**
+     * getMatchers() should return an array with keys describing the expectations and values the closures
+     * containing the logic of the expectations. The first parameter in the closure is the output
+     * of the executed method.
+     *
+     * @return array
+     */
+    function getMatchers()
+    {
+        return [
+            // Checks if the given $result is valid xml
+            'beValidXml' => function ($result)
+            {
+                if ( ! simplexml_load_string($result)) return false;
+
+                return true;
+            }
+        ];
+    }
+
     function let()
     {
         $this->beConstructedWith(new Writer);
@@ -23,19 +43,16 @@ class SitemapSpec extends ObjectBehavior {
 
     function it_generates_sitemap_xml_string()
     {
-        $this->addUrl('http://acme.me', 1.0, 'monthly', null, [['hreflang' => 'en', 'href' => "/en"]]);
+        $this->addUrl('http://acme.me', 1.0, 'monthly', null, [['hreflang' => 'en', 'href' => "http://acme.me/en"]]);
 
-        // TODO: This sometimes works and sometimes does not.
-        /*$this->generate()->shouldBeLike('<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>/</loc><priority>1.0</priority><changeFrequency>monthly</changeFrequency><xhtml:link rel="alternate" hreflang="en" href="/en"/></url></urlset>');*/
+        $this->generate()->shouldBeValidXml();
     }
 
     function it_renders_sitemap_in_xml_response()
     {
-        $this->addUrl('http://acme.me', 1.0, 'monthly', null, [['hreflang' => 'en', 'href' => "/en"]]);
+        $this->addUrl('http://acme.me', 1.0, 'monthly', null, [['hreflang' => 'en', 'href' => "http://acme.me/en"]]);
 
         //var_dump($this->render()->getWrappedObject()->getContent());
-        //var_dump($this->render()->getWrappedObject());
 
         $this->render()->shouldHaveType('Symfony\Component\HttpFoundation\Response');
     }

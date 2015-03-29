@@ -1,5 +1,7 @@
 <?php namespace Laravelista\Bard;
 
+use Carbon\Carbon;
+use DateTime;
 use Exception;
 use Laravelista\Bard\Exceptions\ValidationException;
 use Sabre\Xml\Writer;
@@ -26,10 +28,11 @@ class Url implements XmlSerializable {
      * @param $location
      * @param $priority
      * @param $changeFrequency
-     * @param null $lastModification
+     * @param DateTime|null $lastModification
      * @param array $translations
+     * @throws ValidationException
      */
-    function __construct($location, $priority = null, $changeFrequency = null, $lastModification = null, array $translations = [])
+    function __construct($location, $priority = null, $changeFrequency = null, DateTime $lastModification = null, array $translations = [])
     {
         $this->setLocation($location);
         if ( ! is_null($priority)) $this->setPriority($priority);
@@ -94,12 +97,15 @@ class Url implements XmlSerializable {
     }
 
     /**
-     * @param mixed $location
+     * @param $url
      * @return bool
+     * @throws ValidationException
      */
-    public function setLocation($location)
+    public function setLocation($url)
     {
-        $this->location = $location;
+        $this->validateUrl($url);
+
+        $this->location = $url;
 
         return true;
     }
@@ -155,6 +161,8 @@ class Url implements XmlSerializable {
         $hreflang = $params[0];
         $href = $params[1];
 
+        $this->validateUrl($href);
+
         $this->translations[] = [
             'hreflang' => $hreflang,
             'href'     => $href
@@ -173,16 +181,17 @@ class Url implements XmlSerializable {
         {
             throw new ValidationException('Translation must be an array with hreflang and href keys.');
         }
+
+        $this->validateUrl($translation['href']);
     }
 
     /**
-     * @param null $lastModification
+     * @param DateTime|null $lastModification
      * @return bool
      */
-    public function setLastModification($lastModification)
+    public function setLastModification(DateTime $lastModification)
     {
-        // TODO: Validate and convert date
-        $this->lastModification = $lastModification;
+        $this->lastModification = Carbon::instance($lastModification)->toW3cString();
 
         return true;
     }
@@ -227,6 +236,18 @@ class Url implements XmlSerializable {
         $this->priority = number_format($priority, 1);
 
         return true;
+    }
+
+    /**
+     * @param $url
+     * @throws ValidationException
+     */
+    private function validateUrl($url)
+    {
+        if ( ! filter_var($url, FILTER_VALIDATE_URL))
+        {
+            throw new ValidationException('Not a valid URL');
+        }
     }
 
 }
