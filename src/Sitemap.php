@@ -1,72 +1,35 @@
 <?php namespace Laravelista\Bard;
 
+use Laravelista\Bard\Traits\Common;
 use Sabre\Xml\Writer;
-use Symfony\Component\HttpFoundation\Response;
+use Sabre\Xml\XmlSerializable;
 
-class Sitemap {
+class Sitemap implements XmlSerializable {
 
-    protected $urls = [];
+    use Common;
 
-    protected $writer;
+    protected $location;
+
+    protected $lastmod;
+
+    function __construct($location, $lastModification = null)
+    {
+        $this->setLocation($location);
+        if ( ! is_null($lastModification)) $this->setLastModification($lastModification);
+    }
 
     /**
      * @param Writer $writer
+     * @return void
      */
-    function __construct(Writer $writer)
+    function xmlSerialize(Writer $writer)
     {
-        $this->writer = $writer;
-    }
+        // This is required
+        $writer->write([
+            'loc' => $this->location,
+        ]);
 
-    /**
-     * @return string
-     */
-    public function generate()
-    {
-        $this->writer->openMemory();
-
-        $this->writer->startDocument("1.0", 'UTF-8');
-
-        $this->writer->namespaceMap = [
-            'http://www.sitemaps.org/schemas/sitemap/0.9' => '',
-            'http://www.w3.org/1999/xhtml'                => 'xhtml'
-        ];
-
-        $this->writer->startElement('urlset');
-
-        foreach ($this->urls as $url)
-        {
-            $this->writer->write([
-                'url' => $url
-            ]);
-        }
-
-        $this->writer->endElement();
-
-        return $this->writer->outputMemory();
-    }
-
-
-    /**
-     * @return Response
-     */
-    public function render()
-    {
-        return new Response($this->generate(), Response::HTTP_OK, ['Content-Type' => 'text/xml']);
-    }
-
-
-    /**
-     * @param $location
-     * @param null $priority
-     * @param null $changeFrequency
-     * @param null $lastModification
-     * @param array $translations
-     * @return Url
-     */
-    public function addUrl($location, $priority = null, $changeFrequency = null, $lastModification = null, array $translations = [])
-    {
-        $this->urls[] = $url = new Url($location, $priority, $changeFrequency, $lastModification, $translations);
-
-        return $url;
+        // This is optional
+        $this->add($writer, ['lastmod']);
     }
 }

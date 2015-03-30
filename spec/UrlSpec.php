@@ -53,7 +53,6 @@ class UrlSpec extends ObjectBehavior {
 
     function it_sets_last_modification()
     {
-        // TODO: Fix this to only allow correct date format
         $this->setLastModification(new DateTime("2014-12-22"))->shouldReturn(true);
     }
 

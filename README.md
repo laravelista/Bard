@@ -20,6 +20,8 @@ composer require laravelista/bard
 
 ## Usage
 
+**Ignore the part bellow. I need to update the usage because the package now supports sitemap index's.**
+
 ### General usage
 
 ```

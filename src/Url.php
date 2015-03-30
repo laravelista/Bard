@@ -1,26 +1,28 @@
 <?php namespace Laravelista\Bard;
 
-use Carbon\Carbon;
 use DateTime;
 use Exception;
 use Laravelista\Bard\Exceptions\ValidationException;
+use Laravelista\Bard\Traits\Common;
 use Sabre\Xml\Writer;
 use Sabre\Xml\XmlSerializable;
 
 class Url implements XmlSerializable {
 
+    use Common;
+
     protected $location;
 
     protected $priority;
 
-    protected $changeFrequency;
+    protected $changefreq;
 
     protected $validChangeFrequencyValues = [
         "always", "hourly", "daily", "weekly",
         "monthly", "yearly", "never"
     ];
 
-    protected $lastModification;
+    protected $lastmod;
 
     protected $translations = [];
 
@@ -54,7 +56,7 @@ class Url implements XmlSerializable {
         ]);
 
         // This is optional
-        $this->add($writer, ['priority', 'changeFrequency', 'lastModification']);
+        $this->add($writer, ['priority', 'changefreq', 'lastmod']);
 
         $this->addTranslations($writer);
     }
@@ -79,35 +81,6 @@ class Url implements XmlSerializable {
             ]);
         }
 
-    }
-
-    /**
-     * Adds property from properties to url if it is not null.
-     *
-     * @param Writer $writer
-     * @param array $properties
-     */
-    private function add(Writer $writer, array $properties)
-    {
-        foreach ($properties as $property)
-        {
-            if ( ! is_null($this->$property))
-                $writer->write([$property => $this->$property]);
-        }
-    }
-
-    /**
-     * @param $url
-     * @return bool
-     * @throws ValidationException
-     */
-    public function setLocation($url)
-    {
-        $this->validateUrl($url);
-
-        $this->location = $url;
-
-        return true;
     }
 
     /**
@@ -186,17 +159,6 @@ class Url implements XmlSerializable {
     }
 
     /**
-     * @param DateTime|null $lastModification
-     * @return bool
-     */
-    public function setLastModification(DateTime $lastModification)
-    {
-        $this->lastModification = Carbon::instance($lastModification)->toW3cString();
-
-        return true;
-    }
-
-    /**
      * @return array
      */
     public function getValidChangeFrequencyValues()
@@ -216,7 +178,7 @@ class Url implements XmlSerializable {
             throw new ValidationException('Change frequency supports only: always, hourly, daily, weekly, monthly, yearly and never values.');
         }
 
-        $this->changeFrequency = $changeFrequency;
+        $this->changefreq = $changeFrequency;
 
         return true;
     }
@@ -236,18 +198,6 @@ class Url implements XmlSerializable {
         $this->priority = number_format($priority, 1);
 
         return true;
-    }
-
-    /**
-     * @param $url
-     * @throws ValidationException
-     */
-    private function validateUrl($url)
-    {
-        if ( ! filter_var($url, FILTER_VALIDATE_URL))
-        {
-            throw new ValidationException('Not a valid URL');
-        }
     }
 
 }
