@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3f5c52759e7189d5d4525edff0d2e6ed",
+    "hash": "d9fddecc28f52bd1109e8b283fcf7195",
     "packages": [
         {
             "name": "nesbot/carbon",
