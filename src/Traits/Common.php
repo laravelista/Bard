@@ -7,9 +7,9 @@ use Sabre\Xml\Writer;
 
 trait Common {
 
-    protected $location;
+    /*protected $location;*/
 
-    protected $lastmod;
+    /*protected $lastmod;*/
 
     /**
      * @param $url
