@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/laravelista/Bard.svg)](https://travis-ci.org/laravelista/Bard) [![Latest Stable Version](https://poser.pugx.org/laravelista/bard/v/stable.svg)](https://packagist.org/packages/laravelista/bard) [![Total Downloads](https://poser.pugx.org/laravelista/bard/downloads.svg)](https://packagist.org/packages/laravelista/bard) [![Latest Unstable Version](https://poser.pugx.org/laravelista/bard/v/unstable.svg)](https://packagist.org/packages/laravelista/bard) [![License](https://poser.pugx.org/laravelista/bard/license.svg)](https://packagist.org/packages/laravelista/bard) [![Join the chat at https://gitter.im/laravelista/Bard](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/laravelista/Bard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 
+![Bard](http://news.cdn.leagueoflegends.com/public/images/pages/2015/breveal/img/Promo_Bard_Reveal_BardFloating.png)
+
 Tired of unstable and bloated PHP sitemap packages?
  
 **Look no more!** 
@@ -51,3 +53,10 @@ class SitemapController {
 ```
 $sitemap = App::make('Laravelista\Bard\Sitemap')
 ```
+
+![Bard](http://news.cdn.leagueoflegends.com/public/images/pages/2015/breveal/img/Promo_Bard_Reveal_Mask.png)
+
+
+## Credits
+
+- The cool image with Bard flying and Bard logo are from [Bard, the Wandering Caretaker](http://na.leagueoflegends.com/en/champion-reveal/bard-wandering-caretaker) revealed website.
