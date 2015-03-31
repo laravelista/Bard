@@ -19,42 +19,12 @@ If you are using Laravel you'll have access to some *extra awesomeness* with con
 ```
 composer require laravelista/bard
 ```
+ 
+## List of all poems
 
-## Usage
-
-**Ignore the part bellow. I need to update the usage because the package now supports sitemap index's.**
-
-### General usage
-
-```
-use Laravelista\Bard\Sitemap;
-use Sabre\Xml\Writer;
-
-$sitemap = new Sitemap(new Writer);
-```
-
-### Dependency injection in Laravel
-
-```
-use Laravelista\Bard\Sitemap;
-
-class SitemapController {
-
-    protected $sitemap;
-
-    public function __construct(Sitemap $sitemap) 
-    {
-        $this->sitemap = $sitemap;
-    }
-
-}
-```
-
-### Resolve out of Service Container IoC in Laravel
-
-```
-$sitemap = App::make('Laravelista\Bard\Sitemap')
-```
+- [You and your Sitemap](https://github.com/laravelista/Bard/wiki/You-and-your-Sitemap)
+- [You, your Sitemap and Laravel](https://github.com/laravelista/Bard/wiki/You,-your-Sitemap-and-Laravel)
+ 
 
 ![Bard](http://news.cdn.leagueoflegends.com/public/images/pages/2015/breveal/img/Promo_Bard_Reveal_Mask.png)
 
