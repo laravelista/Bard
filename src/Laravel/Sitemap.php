@@ -5,14 +5,6 @@ use Laravelista\Bard\UrlSet;
 abstract class Sitemap extends UrlSet implements SitemapInterface {
 
     /**
-     * Specify an array of route names that you want
-     * to be included in your sitemap.
-     * Example: home, contact, info, booking ...
-     * @var array
-     */
-    protected $namedRoutes = [];
-
-    /**
      * Specify an array of your app supported locales.
      * Example: en, de, it, hr ...
      *
@@ -21,11 +13,17 @@ abstract class Sitemap extends UrlSet implements SitemapInterface {
     protected $locales = [];
 
     /**
-     * Add named routes listed in property $namedRoutes to Sitemap.
+     * Add named routes to Sitemap.
+     *
+     * Specify an array of route names that you want
+     * to be included in your sitemap.
+     * Example: home, contact, info, booking ...
+     *
+     * @param array $namedRoutes
      */
-    public function addNamedRoutes()
+    public function addNamedRoutes(array $namedRoutes)
     {
-        foreach ($this->namedRoutes as $routeName)
+        foreach ($namedRoutes as $routeName)
         {
             $this->addNamedRoute($routeName);
         }
@@ -59,6 +57,16 @@ abstract class Sitemap extends UrlSet implements SitemapInterface {
         }
 
         return $translations;
+    }
+
+    /**
+     * Sets the locales.
+     *
+     * @param array $locales
+     */
+    public function setLocales(array $locales)
+    {
+        $this->locales = $locales;
     }
 
     /**

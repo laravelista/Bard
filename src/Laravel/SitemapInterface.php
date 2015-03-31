@@ -2,7 +2,7 @@
 
 interface SitemapInterface {
 
-    public function addNamedRoutes();
+    public function addNamedRoutes(array $namedRoutes);
 
     public function addNamedRoute($routeName);
 
@@ -11,5 +11,7 @@ interface SitemapInterface {
     public function getNamedRouteTranslation($routeName, $locale);
 
     public function getLocalizedUrlForRouteName($routeName, $locale);
+
+    public function setLocales(array $locales);
 
 }
