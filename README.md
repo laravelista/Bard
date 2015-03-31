@@ -12,7 +12,7 @@ Bard is the simplest PHP Sitemap package, just add some urls and you are ready t
  
 **But wait, there is more.** 
  
-If you are using Laravel you'll have access to some *extra awesomeness* with convenient helper functions that make creating sitemaps a breeze.
+If you are using Laravel you'll have access to some *extra awesomeness* with convenient boilerplate that makes creating sitemaps a breeze.
  
 ## List of all poems
 

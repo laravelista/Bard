@@ -33,7 +33,7 @@ abstract class Sitemap extends UrlSet implements SitemapInterface {
      * Use $this->addUrl() to add named route to sitemap.
      * You can also add translations and other properties
      * with the object returned from addUrl() method.
-     * You will probably want to add translations.
+     * You will probably want to add translations also.
      *
      * @param $routeName
      * @return mixed
