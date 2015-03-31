@@ -22,8 +22,3 @@ If you are using Laravel you'll have access to some *extra awesomeness* with con
  
 
 ![Bard](http://news.cdn.leagueoflegends.com/public/images/pages/2015/breveal/img/Promo_Bard_Reveal_Mask.png)
-
-
-## Credits
-
-- The cool image with Bard flying and Bard logo are from [Bard, the Wandering Caretaker](http://na.leagueoflegends.com/en/champion-reveal/bard-wandering-caretaker) revealed website.
