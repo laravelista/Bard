@@ -16,10 +16,9 @@ If you are using Laravel you'll have access to some *extra awesomeness* with con
  
 ## List of all poems
 
-- [Install me gently](https://github.com/laravelista/Bard/wiki/Install-me-gently)
-- [Let me show you how to use me](https://github.com/laravelista/Bard/wiki/You-and-your-Sitemap)
-- [Sitemap Index, you need?](https://github.com/laravelista/Bard/wiki/You-and-your-Sitemap)
-- [Do you want to use me with Laravel?](https://github.com/laravelista/Bard/wiki/You,-your-Sitemap-and-Laravel)
+- [Install me gently](https://github.com/laravelista/Bard/wiki/Installation)
+- [Let me show you how to use me](https://github.com/laravelista/Bard/wiki/Usage)
+- [Laravel + Bard](https://github.com/laravelista/Bard/wiki/Laravel-and-Bard)
  
 
 ![Bard](http://news.cdn.leagueoflegends.com/public/images/pages/2015/breveal/img/Promo_Bard_Reveal_Mask.png)
