@@ -14,14 +14,9 @@ Bard is the simplest PHP Sitemap package, just add some urls and you are ready t
  
 If you are using Laravel you'll have access to some *extra awesomeness* with convenient helper functions that make creating sitemaps a breeze.
  
-## Installation
- 
-```
-composer require laravelista/bard
-```
- 
 ## List of all poems
 
+- [Install me gently](https://github.com/laravelista/Bard/wiki/Install-me-gently)
 - [You and your Sitemap](https://github.com/laravelista/Bard/wiki/You-and-your-Sitemap)
 - [You, your Sitemap and Laravel](https://github.com/laravelista/Bard/wiki/You,-your-Sitemap-and-Laravel)
  
