@@ -31,6 +31,7 @@ If you are using Laravel you'll have access to some *extra awesomeness* with con
 
 - [Install me gently](https://github.com/laravelista/Bard/wiki/Installation)
 - [Let me show you how to use me](https://github.com/laravelista/Bard/wiki/Usage)
+- [Learn the API](https://github.com/laravelista/Bard/wiki/Learn-the-API)
 - [Laravel + Bard](https://github.com/laravelista/Bard/wiki/Laravel-and-Bard)
 - [Laravel Boilerplate](https://github.com/laravelista/Bard/wiki/Laravel-Boilerplate)
  

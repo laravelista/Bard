@@ -159,6 +159,8 @@ class Url implements XmlSerializable {
     }
 
     /**
+     * This is only used for testing with PHPSpec.
+     *
      * @return array
      */
     public function getValidChangeFrequencyValues()
