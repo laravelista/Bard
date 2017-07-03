@@ -5,10 +5,10 @@
 ![Bard](http://news.cdn.leagueoflegends.com/public/images/pages/2015/breveal/img/Promo_Bard_Reveal_BardFloating.png)
 
 Tired of unstable and bloated PHP sitemap packages?
+ 
+**Look no more!** 
 
-**Look no more!**
-
-Bard is the simplest PHP Sitemap package, just add some URLs and you are ready to go. Did I mention that *it supports multilingual locations aka hreflangs*.
+Bard is the simplest PHP Sitemap package, just add some urls and you are ready to go. Did I mention that *it supports multilingual locations aka hreflangs*. 
 
 ## Syntax
 
@@ -22,9 +22,19 @@ $sitemap->addUrl('http://domain.com/contact')
 
 ## List of all poems
 
-- [Install me gently](https://github.com/laravelista/Bard/wiki/Installation)
-- [Let me show you how to use me](https://github.com/laravelista/Bard/wiki/Usage)
+Run this from your project root in command line:
+
+```
+composer require laravelista/bard
+```
+
+- [Usage](https://github.com/laravelista/Bard/wiki/Usage)
 - [Learn the API](https://github.com/laravelista/Bard/wiki/Learn-the-API)
 - [Laravel + Bard](https://github.com/laravelista/Bard/wiki/Laravel-and-Bard)
+
+**Tutorials:**
+
+- [Sitemap for better SEO](https://laravelista.com/lessons/sitemap-for-better-seo) 
+- [Create a sitemap with Laravel and Bard](https://laravelista.com/posts/create-a-sitemap-with-laravel-and-bard)
 
 ![Bard](http://news.cdn.leagueoflegends.com/public/images/pages/2015/breveal/img/Promo_Bard_Reveal_Mask.png)
