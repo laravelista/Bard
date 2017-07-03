@@ -1,12 +1,14 @@
-<?php namespace Laravelista\Bard;
+<?php
+
+namespace Laravelista\Bard;
 
 use Laravelista\Bard\Interfaces\Generatable;
 use Laravelista\Bard\Interfaces\Renderable;
 use Laravelista\Bard\Traits\Renderer;
 use Sabre\Xml\Writer;
 
-class SitemapIndex implements Renderable, Generatable {
-
+class SitemapIndex implements Renderable, Generatable
+{
     use Renderer;
 
     protected $sitemaps = [];
@@ -16,7 +18,7 @@ class SitemapIndex implements Renderable, Generatable {
     /**
      * @param Writer $writer
      */
-    function __construct(Writer $writer)
+    public function __construct(Writer $writer)
     {
         $this->writer = $writer;
     }
@@ -36,8 +38,7 @@ class SitemapIndex implements Renderable, Generatable {
 
         $this->writer->startElement('sitemapindex');
 
-        foreach ($this->sitemaps as $sitemap)
-        {
+        foreach ($this->sitemaps as $sitemap) {
             $this->writer->write([
                 'sitemap' => $sitemap
             ]);
@@ -50,14 +51,12 @@ class SitemapIndex implements Renderable, Generatable {
 
     /**
      * @param $location
-     * @param null $lastModification
      * @return Sitemap
      */
-    public function addSitemap($location, $lastModification = null)
+    public function addSitemap($location)
     {
-        $this->sitemaps[] = $sitemap = new Sitemap($location, $lastModification);
+        $this->sitemaps[] = $sitemap = new Sitemap($location);
 
         return $sitemap;
     }
-
 }

@@ -1,7 +1,9 @@
-<?php namespace Laravelista\Bard\Interfaces;
+<?php
 
-interface Generatable {
+namespace Laravelista\Bard\Interfaces;
 
+interface Generatable
+{
     /**
      * @return string
      */

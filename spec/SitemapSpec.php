@@ -8,23 +8,23 @@ use Prophecy\Argument;
 
 class SitemapSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
         $this->beConstructedWith('http://acme.me/sitemap.xml');
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Laravelista\Bard\Sitemap');
     }
 
-    function it_sets_location()
+    public function it_sets_location()
     {
-        $this->setLocation('http://acme.me/sitemap.xml')->shouldReturn(true);
+        $this->setLocation('http://acme.me/sitemap.xml')->shouldReturn($this);
     }
 
-    function it_sets_last_modification()
+    public function it_sets_last_modification()
     {
-        $this->setLastModification(new DateTime("2014-12-22"))->shouldReturn(true);
+        $this->setLastModification(new DateTime("2014-12-22"))->shouldReturn($this);
     }
 }

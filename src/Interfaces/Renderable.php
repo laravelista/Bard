@@ -1,9 +1,11 @@
-<?php namespace Laravelista\Bard\Interfaces;
+<?php
+
+namespace Laravelista\Bard\Interfaces;
 
 use Symfony\Component\HttpFoundation\Response;
 
-interface Renderable {
-
+interface Renderable
+{
     /**
      * @return Response
      */

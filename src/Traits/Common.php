@@ -1,20 +1,21 @@
-<?php namespace Laravelista\Bard\Traits;
+<?php
+
+namespace Laravelista\Bard\Traits;
 
 use Carbon\Carbon;
 use DateTime;
-use Laravelista\Bard\Exceptions\ValidationException;
+use Exception;
 use Sabre\Xml\Writer;
 
-trait Common {
+trait Common
+{
+    /* protected $location; */
 
-    /*protected $location;*/
-
-    /*protected $lastmod;*/
+    /* protected $lastmod; */
 
     /**
      * @param $url
-     * @return bool
-     * @throws ValidationException
+     * @throws Exception
      */
     public function setLocation($url)
     {
@@ -22,19 +23,18 @@ trait Common {
 
         $this->location = $url;
 
-        return true;
+        return $this;
     }
 
 
     /**
      * @param DateTime $lastModification
-     * @return bool
      */
     public function setLastModification(DateTime $lastModification)
     {
         $this->lastmod = Carbon::instance($lastModification)->toW3cString();
 
-        return true;
+        return $this;
     }
 
     /**
@@ -45,10 +45,10 @@ trait Common {
      */
     private function add(Writer $writer, array $properties)
     {
-        foreach ($properties as $property)
-        {
-            if ( ! is_null($this->$property))
+        foreach ($properties as $property) {
+            if (! is_null($this->$property)) {
                 $writer->write([$property => $this->$property]);
+            }
         }
     }
 
@@ -58,10 +58,8 @@ trait Common {
      */
     private function validateUrl($url)
     {
-        if ( ! filter_var($url, FILTER_VALIDATE_URL))
-        {
-            throw new ValidationException('Not a valid URL');
+        if (! filter_var($url, FILTER_VALIDATE_URL)) {
+            throw new Exception('Not a valid URL');
         }
     }
-
 }

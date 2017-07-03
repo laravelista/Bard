@@ -1,12 +1,14 @@
-<?php namespace Laravelista\Bard;
+<?php
+
+namespace Laravelista\Bard;
 
 use Laravelista\Bard\Interfaces\Renderable;
 use Laravelista\Bard\Interfaces\Generatable;
 use Laravelista\Bard\Traits\Renderer;
 use Sabre\Xml\Writer;
 
-class UrlSet implements Renderable, Generatable {
-
+class UrlSet implements Renderable, Generatable
+{
     use Renderer;
 
     protected $urls = [];
@@ -16,7 +18,7 @@ class UrlSet implements Renderable, Generatable {
     /**
      * @param Writer $writer
      */
-    function __construct(Writer $writer)
+    public function __construct(Writer $writer)
     {
         $this->writer = $writer;
     }
@@ -37,8 +39,7 @@ class UrlSet implements Renderable, Generatable {
 
         $this->writer->startElement('urlset');
 
-        foreach ($this->urls as $url)
-        {
+        foreach ($this->urls as $url) {
             $this->writer->write([
                 'url' => $url
             ]);
@@ -50,18 +51,15 @@ class UrlSet implements Renderable, Generatable {
     }
 
     /**
+     * It adds a URL.
+     *
      * @param $location
-     * @param null $priority
-     * @param null $changeFrequency
-     * @param null $lastModification
-     * @param array $translations
      * @return Url
      */
-    public function addUrl($location, $priority = null, $changeFrequency = null, $lastModification = null, array $translations = [])
+    public function addUrl($location)
     {
-        $this->urls[] = $url = new Url($location, $priority, $changeFrequency, $lastModification, $translations);
+        $this->urls[] = $url = new Url($location);
 
         return $url;
     }
-
 }

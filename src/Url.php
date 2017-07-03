@@ -1,14 +1,14 @@
-<?php namespace Laravelista\Bard;
+<?php
 
-use DateTime;
+namespace Laravelista\Bard;
+
 use Exception;
-use Laravelista\Bard\Exceptions\ValidationException;
 use Laravelista\Bard\Traits\Common;
 use Sabre\Xml\Writer;
 use Sabre\Xml\XmlSerializable;
 
-class Url implements XmlSerializable {
-
+class Url implements XmlSerializable
+{
     use Common;
 
     protected $location;
@@ -17,30 +17,13 @@ class Url implements XmlSerializable {
 
     protected $changefreq;
 
-    protected $validChangeFrequencyValues = [
-        "always", "hourly", "daily", "weekly",
-        "monthly", "yearly", "never"
-    ];
-
     protected $lastmod;
 
     protected $translations = [];
 
-    /**
-     * @param $location
-     * @param $priority
-     * @param $changeFrequency
-     * @param DateTime|null $lastModification
-     * @param array $translations
-     * @throws ValidationException
-     */
-    function __construct($location, $priority = null, $changeFrequency = null, DateTime $lastModification = null, array $translations = [])
+    public function __construct($location)
     {
         $this->setLocation($location);
-        if ( ! is_null($priority)) $this->setPriority($priority);
-        if ( ! is_null($changeFrequency)) $this->setChangeFrequency($changeFrequency);
-        if ( ! is_null($lastModification)) $this->setLastModification($lastModification);
-        if ( ! is_null($translations)) $this->setTranslations($translations);
     }
 
     /**
@@ -48,26 +31,25 @@ class Url implements XmlSerializable {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer)
+    public function xmlSerialize(Writer $writer)
     {
-        // This is required
         $writer->write([
             'loc' => $this->location,
         ]);
 
-        // This is optional
         $this->add($writer, ['priority', 'changefreq', 'lastmod']);
 
         $this->addTranslations($writer);
     }
 
     /**
+     * Used for serialization.
+     *
      * @param Writer $writer
      */
     private function addTranslations(Writer $writer)
     {
-        foreach ($this->translations as $translation)
-        {
+        foreach ($this->translations as $translation) {
             $writer->write([
                 [
                     'name'       => 'xhtml:link',
@@ -80,126 +62,62 @@ class Url implements XmlSerializable {
                 ]
             ]);
         }
-
     }
 
     /**
-     * @param array $translations
-     * @return bool
-     * @throws ValidationException
+     * It adds a translation
+     *
+     * addTranslation('hr', 'http://domain.com/hr/contact');
+     *
+     * @param $locale
+     * @param $url
      */
-    public function setTranslations(array $translations)
+    public function addTranslation($locale, $url)
     {
-        foreach ($translations as $translation)
-        {
-            if ( ! is_array($translation))
-            {
-                throw new ValidationException('Translation must be an array.');
-            }
-
-            $this->validateTranslation($translation);
-        }
-
-        $this->translations = $translations;
-
-        return true;
-    }
-
-    /**
-     * Adds a translation to property translations.
-     * @return bool
-     * @throws Exception
-     * @throws ValidationException
-     */
-    public function addTranslation()
-    {
-        $params = func_get_args();
-
-        if (is_array($params[0]))
-        {
-            $translation = $params[0];
-
-            $this->validateTranslation($translation);
-
-            $this->translations[] = $translation;
-
-            return true;
-        }
-
-        if (count($params) != 2)
-        {
-            throw new Exception('You must pass array as first parameter or (hreflang and href)');
-        }
-
-        $hreflang = $params[0];
-        $href = $params[1];
-
-        $this->validateUrl($href);
+        $this->validateUrl($url);
 
         $this->translations[] = [
-            'hreflang' => $hreflang,
-            'href'     => $href
+            'hreflang' => $locale,
+            'href'     => $url
         ];
 
-        return true;
+        return $this;
     }
 
     /**
-     * @param $translation
-     * @throws ValidationException
-     */
-    private function validateTranslation(array $translation)
-    {
-        if ( ! array_key_exists('hreflang', $translation) || ! array_key_exists('href', $translation))
-        {
-            throw new ValidationException('Translation must be an array with hreflang and href keys.');
-        }
-
-        $this->validateUrl($translation['href']);
-    }
-
-    /**
-     * This is only used for testing with PHPSpec.
+     * It sets change frequency.
      *
-     * @return array
-     */
-    public function getValidChangeFrequencyValues()
-    {
-        return $this->validChangeFrequencyValues;
-    }
-
-    /**
-     * @param null $changeFrequency
-     * @return bool
+     * @param $changeFrequency
      * @throws ValidationException
      */
     public function setChangeFrequency($changeFrequency)
     {
-        if ( ! in_array($changeFrequency, $this->getValidChangeFrequencyValues()))
-        {
-            throw new ValidationException('Change frequency supports only: always, hourly, daily, weekly, monthly, yearly and never values.');
+        if (! in_array($changeFrequency, [
+            "always", "hourly", "daily", "weekly",
+            "monthly", "yearly", "never"
+        ])) {
+            throw new Exception('Change frequency not supported!');
         }
 
         $this->changefreq = $changeFrequency;
 
-        return true;
+        return $this;
     }
 
     /**
-     * @param null $priority
-     * @return bool
+     * It sets priority.
+     *
+     * @param $priority
      * @throws ValidationException
      */
     public function setPriority($priority)
     {
-        if ( ! (is_float($priority) && $priority >= 0 && $priority <= 1))
-        {
-            throw new ValidationException('Priority must be >=0.0 and <=1.0');
+        if (! (is_float($priority) && $priority >= 0 && $priority <= 1)) {
+            throw new Exception('Priority must be >=0.0 and <=1.0');
         }
 
         $this->priority = number_format($priority, 1);
 
-        return true;
+        return $this;
     }
-
 }
