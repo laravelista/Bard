@@ -8,19 +8,29 @@ Tired of unstable and bloated PHP sitemap packages?
  
 **Look no more!** 
 
-Bard is the simplest PHP Sitemap package, just add some urls and you are ready to go. Did I mention that *it supports multilingual locations aka hreflangs*. 
+Bard is the simplest PHP Sitemap package, just add some URLs and you are ready to go. Did I mention that *it supports multilingual locations aka hreflangs*. 
 
 ## Syntax
 
 ```
+use Laravelista\Bard\UrlSet;
+use Sabre\Xml\Writer;
+use Carbon\Carbon;
+
+$sitemap = new UrlSet(new Writer);
+
 $sitemap->addUrl('http://domain.com/contact')
     ->setPriority(0.8)
     ->setChangeFrequency('hourly')
     ->setLastModification(Carbon::now())
     ->addTranslation('hr', 'http://domain.com/hr/contact');
+
+return $sitemap->render();
 ```
 
-## List of all poems
+## Start learning
+
+### Installation
 
 Run this from your project root in command line:
 
@@ -28,11 +38,13 @@ Run this from your project root in command line:
 composer require laravelista/bard
 ```
 
+### Documentation
+
 - [Usage](https://github.com/laravelista/Bard/wiki/Usage)
 - [Learn the API](https://github.com/laravelista/Bard/wiki/Learn-the-API)
 - [Laravel + Bard](https://github.com/laravelista/Bard/wiki/Laravel-and-Bard)
 
-**Tutorials:**
+#### Tutorials
 
 - [Sitemap for better SEO](https://laravelista.com/lessons/sitemap-for-better-seo) 
 - [Create a sitemap with Laravel and Bard](https://laravelista.com/posts/create-a-sitemap-with-laravel-and-bard)
