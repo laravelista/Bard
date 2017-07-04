@@ -88,7 +88,7 @@ class Url implements XmlSerializable
      * It sets change frequency.
      *
      * @param $changeFrequency
-     * @throws ValidationException
+     * @throws Exception
      */
     public function setChangeFrequency($changeFrequency)
     {
@@ -108,7 +108,7 @@ class Url implements XmlSerializable
      * It sets priority.
      *
      * @param $priority
-     * @throws ValidationException
+     * @throws Exception
      */
     public function setPriority($priority)
     {
