@@ -25,7 +25,7 @@ $sitemap->addUrl('http://domain.com/contact')
     ->setLastModification(Carbon::now())
     ->addTranslation('hr', 'http://domain.com/hr/contact');
 
-return $sitemap->render();
+$sitemap->render()->send();
 ```
 
 ## Start learning
