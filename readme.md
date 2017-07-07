@@ -46,6 +46,7 @@ composer require laravelista/bard
 
 #### Tutorials
 
+- [Bard 2.0 and Laravel](https://laravelista.com/lessons/bard-20-and-laravel)
 - [Creating a Sitemap with Bard 2.0](https://laravelista.com/lessons/creating-a-sitemap-with-bard-20)
 - [Sitemap for better SEO](https://laravelista.com/lessons/sitemap-for-better-seo) 
 - [Create a sitemap with Laravel and Bard](https://laravelista.com/posts/create-a-sitemap-with-laravel-and-bard)
