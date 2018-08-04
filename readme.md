@@ -1,14 +1,8 @@
 # Bard
 
-[![Build Status](https://travis-ci.org/laravelista/Bard.svg)](https://travis-ci.org/laravelista/Bard) [![Latest Stable Version](https://poser.pugx.org/laravelista/bard/v/stable.svg)](https://packagist.org/packages/laravelista/bard) [![Total Downloads](https://poser.pugx.org/laravelista/bard/downloads.svg)](https://packagist.org/packages/laravelista/bard) [![License](https://poser.pugx.org/laravelista/bard/license.svg)](https://packagist.org/packages/laravelista/bard)
+Bard is the simplest PHP Sitemap package, just add some URLs and you are ready to go.
 
 [![Become a Patron](https://img.shields.io/badge/Becoma%20a-Patron-f96854.svg?style=for-the-badge)](https://www.patreon.com/shockmario)
-
-Tired of unstable and bloated PHP sitemap packages?
- 
-**Look no more!** 
-
-Bard is the simplest PHP Sitemap package, just add some URLs and you are ready to go. Did I mention that *it supports multilingual locations aka hreflangs*. 
 
 ## Syntax
 
