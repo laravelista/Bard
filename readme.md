@@ -4,6 +4,8 @@ Bard is the simplest PHP Sitemap package, just add some URLs and you are ready t
 
 [![Become a Patron](https://img.shields.io/badge/Becoma%20a-Patron-f96854.svg?style=for-the-badge)](https://www.patreon.com/shockmario)
 
+**Abandoned!** I suggest using [`spatie/larevel-sitemap`](https://github.com/spatie/laravel-sitemap) instead. It is a much better package with automatic sitemap generation.
+
 ## Syntax
 
 ```
